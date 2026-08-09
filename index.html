@@ -8,15 +8,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#07050B;
-    --bg-panel:#0F0A18;
-    --surface:#160F24;
-    --surface-2:#231733;
-    --text:#F1EDFB;
-    --muted:#9C93B8;
-    --teal:#A855F7;
-    --amber:#7C6CF6;
-    --hairline:#2C2140;
+    --bg:#0A0A0B;
+    --bg-panel:#101012;
+    --surface:#161618;
+    --surface-2:#1F1F22;
+    --text:#F2F2F3;
+    --muted:#8C8C92;
+    --teal:#4DD8E8;
+    --amber:#7FE8F0;
+    --hairline:#2A2A2E;
   }
   *{box-sizing:border-box; margin:0; padding:0;}
   html{scroll-behavior:smooth;}
@@ -51,13 +51,13 @@
   }
   .logo-node{
     width:9px; height:9px; border-radius:50%; background:var(--teal);
-    box-shadow:0 0 0 0 rgba(168,85,247,.6);
+    box-shadow:0 0 0 0 rgba(77,216,232,.6);
     animation:pulse 2.4s infinite;
   }
   @keyframes pulse{
-    0%{box-shadow:0 0 0 0 rgba(168,85,247,.55);}
-    70%{box-shadow:0 0 0 10px rgba(168,85,247,0);}
-    100%{box-shadow:0 0 0 0 rgba(168,85,247,0);}
+    0%{box-shadow:0 0 0 0 rgba(77,216,232,.55);}
+    70%{box-shadow:0 0 0 10px rgba(77,216,232,0);}
+    100%{box-shadow:0 0 0 0 rgba(77,216,232,0);}
   }
   .nav-right{display:flex; align-items:center; gap:28px;}
   .nav-links{display:flex; gap:34px; list-style:none;}
@@ -78,8 +78,8 @@
     display:flex; align-items:center; justify-content:center;
     text-align:center; overflow:hidden;
     background:
-      radial-gradient(ellipse 900px 600px at 50% 38%, rgba(168,85,247,0.14), transparent 60%),
-      radial-gradient(ellipse 700px 500px at 78% 75%, rgba(124,108,246,0.12), transparent 65%),
+      radial-gradient(ellipse 900px 600px at 50% 38%, rgba(77,216,232,0.14), transparent 60%),
+      radial-gradient(ellipse 700px 500px at 78% 75%, rgba(77,216,232,0.12), transparent 65%),
       linear-gradient(180deg, #16121C 0%, #0E0C12 55%, #060608 100%);
   }
   #hero::before{
@@ -102,6 +102,19 @@
     z-index:1;
   }
   #hero-canvas{position:absolute; top:0; left:0; width:100%; height:100%; z-index:1;}
+  .glitch-bars{position:absolute; inset:0; z-index:1; overflow:hidden; pointer-events:none;}
+  .glitch-bar{
+    position:absolute; width:2px; background:var(--hairline); opacity:.5;
+    animation:glitchFlicker 3.4s ease-in-out infinite;
+  }
+  .glitch-bar.accent{background:var(--teal); opacity:.55;}
+  @keyframes glitchFlicker{
+    0%, 100%{opacity:.15;}
+    45%{opacity:.15;}
+    50%{opacity:.6;}
+    55%{opacity:.15;}
+    80%{opacity:.4;}
+  }
   .hero-content{position:relative; z-index:2; padding:0 20px; max-width:820px;}
 
   .hero-grid{
@@ -128,7 +141,7 @@
     position:absolute; inset:0; border-radius:50%;
     border:1px dashed var(--hairline);
   }
-  .ring-2{ inset:-16px; border-color:rgba(168,85,247,0.35); }
+  .ring-2{ inset:-16px; border-color:rgba(77,216,232,0.35); }
   .orbit-dots{
     position:absolute; inset:-8px; border-radius:50%;
     background:repeating-conic-gradient(var(--teal) 0deg 4deg, transparent 4deg 11deg);
@@ -151,7 +164,7 @@
   }
   .sb-greeting{
     font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:18px;
-    background:linear-gradient(90deg, var(--teal), #D9B8FF);
+    background:linear-gradient(90deg, var(--teal), #B8F0F5);
     -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
     margin-bottom:4px;
   }
@@ -178,7 +191,7 @@
     position:absolute; bottom:10px; right:10px; display:flex; align-items:flex-end; gap:3px; height:16px;
     opacity:0; transition:opacity .3s ease;
     background:rgba(23,24,26,0.75); padding:6px 8px; border-radius:8px; backdrop-filter:blur(2px);
-    border:1px solid rgba(168,85,247,0.3);
+    border:1px solid rgba(77,216,232,0.3);
   }
   .talk-indicator.active{opacity:1;}
   .talk-indicator span{width:3px; background:var(--teal); border-radius:2px; animation:soundBar 0.8s ease-in-out infinite;}
@@ -194,15 +207,16 @@
   }
   .eyebrow.show{opacity:1; transform:translateY(0);}
   .hero-title{
-    font-size:clamp(28px, 4.6vw, 52px); font-weight:600; line-height:1.28;
-    min-height:2.6em;
-    background:linear-gradient(100deg, #D9B8FF 0%, #A855F7 40%, #8B6BF0 70%, #7C6CF6 100%);
-    -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; color:#E8637A;
-    filter:drop-shadow(0 0 22px rgba(168,85,247,0.25));
+    font-size:clamp(14px, 2.4vw, 30px); font-weight:600; line-height:1.3;
+    min-height:1.5em; white-space:nowrap; overflow:visible;
+    max-width:92vw; display:inline-block;
+    background:linear-gradient(100deg, #B8F0F5 0%, #4DD8E8 40%, #2FB8C9 70%, #1E8FA0 100%);
+    -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; color:#4DD8E8;
+    filter:drop-shadow(0 0 22px rgba(77,216,232,0.25));
   }
   .hero-title .cursor{
     display:inline-block; width:2px; background:var(--teal); margin-left:2px;
-    animation:blink 0.9s step-end infinite;
+    animation:blink 0.9s step-end infinite; -webkit-text-fill-color:var(--teal);
   }
   @keyframes blink{50%{opacity:0;}}
   .hero-tagline{
@@ -222,7 +236,7 @@
     border:1px solid var(--hairline);
   }
   .btn-primary{background:var(--teal); color:#0E1211; border-color:var(--teal); font-weight:600;}
-  .btn-primary:hover{transform:translateY(-2px); box-shadow:0 8px 22px rgba(168,85,247,.25);}
+  .btn-primary:hover{transform:translateY(-2px); box-shadow:0 8px 22px rgba(77,216,232,.25);}
   .btn-ghost{color:var(--text);}
   .btn-ghost:hover{border-color:var(--text); transform:translateY(-2px);}
   @keyframes fadeUp{from{opacity:0; transform:translateY(14px);} to{opacity:1; transform:translateY(0);}}
@@ -257,6 +271,13 @@
 
   .reveal{opacity:0; transform:translateY(24px); transition:opacity .6s ease, transform .6s ease;}
   .reveal.in{opacity:1; transform:translateY(0);}
+  .card-fly{
+    opacity:0; transform:translateY(70px) scale(.88) rotate(-2deg);
+    transition:opacity .7s cubic-bezier(.22,1,.36,1), transform .7s cubic-bezier(.22,1,.36,1);
+  }
+  .card-fly.from-left{ transform:translateX(-90px) translateY(30px) scale(.88) rotate(-4deg); }
+  .card-fly.from-right{ transform:translateX(90px) translateY(30px) scale(.88) rotate(4deg); }
+  .card-fly.in{opacity:1; transform:translateY(0) translateX(0) scale(1) rotate(0deg);}
 
   /* ---------- SKILLS ---------- */
   #skills{background:var(--bg-panel); border-top:1px solid var(--hairline); border-bottom:1px solid var(--hairline);}
@@ -296,12 +317,16 @@
   .card{
     position:relative; background:var(--surface); border:1px solid var(--hairline);
     border-radius:10px; padding:28px; overflow:hidden; cursor:pointer;
-    transition:transform .35s ease, border-color .35s ease;
+    transition:transform .45s cubic-bezier(.34,1.56,.64,1), border-color .35s ease, border-radius .6s ease;
   }
-  .card:hover{transform:translateY(-6px); border-color:var(--teal);}
+  .card:hover{
+    transform:translateY(-6px) scale(1.015);
+    border-color:var(--teal);
+    border-radius:26px 8px 26px 8px;
+  }
   .card::before{
     content:''; position:absolute; inset:0;
-    background:linear-gradient(100deg, transparent 30%, rgba(168,85,247,.12) 50%, transparent 70%);
+    background:linear-gradient(100deg, transparent 30%, rgba(77,216,232,.12) 50%, transparent 70%);
     transform:translateX(-120%); transition:transform .8s ease;
   }
   .card:hover::before{transform:translateX(120%);}
@@ -309,13 +334,18 @@
     width:44px; height:44px; border-radius:8px; background:var(--surface-2);
     display:flex; align-items:center; justify-content:center; margin-bottom:22px;
     color:var(--teal); font-family:'JetBrains Mono', monospace; font-weight:600;
+    transition:border-radius .5s ease, transform .5s ease;
+  }
+  .card:hover .card-icon{
+    border-radius:50% 20% 50% 20%;
+    transform:rotate(8deg);
   }
   .card h3{font-size:19px; margin-bottom:10px;}
   .card p{color:var(--muted); font-size:14.5px; line-height:1.6; margin-bottom:18px;}
   .card-tags{display:flex; flex-wrap:wrap; gap:8px;}
   .card-tags span{
     font-family:'JetBrains Mono', monospace; font-size:11.5px; color:var(--amber);
-    border:1px solid rgba(168,85,247,.35); padding:4px 10px; border-radius:12px;
+    border:1px solid rgba(77,216,232,.35); padding:4px 10px; border-radius:12px;
   }
   .card.placeholder{border-style:dashed; opacity:.7;}
   .card.placeholder:hover{opacity:1;}
@@ -398,11 +428,12 @@
     padding:8px 16px; border-radius:20px; transition:border-color .2s ease, color .2s ease, transform .2s ease;
   }
   .modal-links a:hover{border-color:var(--teal); transform:translateY(-1px);}
-  .card.featured{border-color:rgba(168,85,247,0.35); position:relative;}
-  .card.featured::before{
-    content:'PUBLISHED ON PYPI'; position:absolute; top:14px; right:14px;
+  .card.featured{border-color:rgba(77,216,232,0.35); position:relative;}
+  .card-badge{
+    position:absolute; top:14px; right:14px;
     font-family:'JetBrains Mono', monospace; font-size:9px; letter-spacing:.6px;
-    color:var(--teal); border:1px solid rgba(168,85,247,0.4); padding:3px 8px; border-radius:10px;
+    color:var(--teal); border:1px solid rgba(77,216,232,0.4); padding:3px 8px; border-radius:10px;
+    text-transform:uppercase;
   }
 
   @media (prefers-reduced-motion: reduce){
@@ -427,11 +458,12 @@
 <!-- HERO -->
 <section id="hero">
   <canvas id="hero-canvas"></canvas>
+  <div class="glitch-bars" id="glitch-bars"></div>
   <div class="hero-grid">
 
     <div class="hero-left">
       <div class="accent-line"></div>
-      <p class="hero-role">Aspiring<br>Data Scientist,<br>Data Engineer &amp; ML</p>
+      <p class="hero-role">Data Scientist<br>&amp; Data Engineer<br>in Training</p>
     </div>
 
     <div class="hero-center">
@@ -448,12 +480,12 @@
       </div>
       <h1 class="hero-bigname">FAHAD HAMEED</h1>
 
-      <div class="eyebrow" id="eyebrow">// welcome</div>
+      <div class="eyebrow" id="eyebrow">// data science &amp; engineering</div>
       <p class="hero-title mono" id="typed-title"></p>
     </div>
 
     <div class="hero-right">
-      <p class="hero-tagline" id="hero-tagline">Turning raw data into decisions: one query, one model, one insight at a time.</p>
+      <p class="hero-tagline" id="hero-tagline">I turn messy, real-world data into clean pipelines, sharp analysis, and models that hold up.</p>
       <div class="hero-cta" id="hero-cta">
         <a href="#projects" class="btn btn-primary">View Projects</a>
         <a href="#contact" class="btn btn-ghost">Get in Touch</a>
@@ -511,8 +543,8 @@
       <div class="section-tag">03 / Journey</div>
       <h2 class="section-title">About Fahad</h2>
       <div class="about-text" style="margin-top:24px;">
-        <p>I'm a data science student and aspiring AI Data Scientist, Data Engineer &amp; ML practitioner, working across Python, SQL, and applied statistics, from classroom projects to real research support.</p>
-        <p>My foundation is in Python, Pandas, and statistical analysis, with SQL at a basic-but-growing level. I'm drawn to data science because it turns messy, real-world numbers into decisions people can actually act on. Right now, I'm focused on building a strong project portfolio and moving toward a full-time role in data science.</p>
+        <p>I'm a Computer Science undergraduate specializing in Data Science and Data Engineering, working across Python, SQL, and applied statistics, from independent projects to real research support for academic publications.</p>
+        <p>My core stack is Python, Pandas, and SQL, backed by hands-on work in web scraping, machine learning, and data pipeline design. I'm drawn to this field because it turns messy, real-world data into decisions people can actually act on. I'm currently building a portfolio of production-style projects while working toward a full-time role in data science or data engineering.</p>
       </div>
     </div>
     <div class="about-photo-col">
@@ -652,7 +684,7 @@ function animate(now){
       const dy = Math.cos((now/1800) + p.seed) * 6;
       ctx.beginPath();
       ctx.arc(p.ix + dx, p.iy + dy, p.r, 0, Math.PI*2);
-      ctx.fillStyle = `rgba(168,85,247,0.28)`;
+      ctx.fillStyle = `rgba(77,216,232,0.28)`;
       ctx.fill();
     });
     requestAnimationFrame(animate);
@@ -680,7 +712,7 @@ function animate(now){
 
     ctx.beginPath();
     ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
-    ctx.fillStyle = `rgba(168,85,247,${0.35 + eased*0.4})`;
+    ctx.fillStyle = `rgba(77,216,232,${0.35 + eased*0.4})`;
     ctx.fill();
   });
 
@@ -689,13 +721,68 @@ function animate(now){
 if(!reduceMotion){ requestAnimationFrame(animate); }
 
 /* ===== HERO: show immediately, no intro button ===== */
+const glitchBarsEl = document.getElementById('glitch-bars');
+if(glitchBarsEl){
+  const barCount = reduceMotion ? 0 : 26;
+  for(let i=0; i<barCount; i++){
+    const bar = document.createElement('div');
+    const isAccent = Math.random() < 0.18;
+    bar.className = 'glitch-bar' + (isAccent ? ' accent' : '');
+    bar.style.left = (Math.random()*100) + '%';
+    const h = 20 + Math.random()*160;
+    bar.style.height = h + 'px';
+    bar.style.top = (Math.random()*80) + '%';
+    bar.style.animationDelay = (Math.random()*3.4) + 's';
+    bar.style.animationDuration = (2.6 + Math.random()*2.4) + 's';
+    glitchBarsEl.appendChild(bar);
+  }
+}
 const eyebrowEl = document.getElementById('eyebrow');
 const taglineEl = document.getElementById('hero-tagline');
 const ctaEl = document.getElementById('hero-cta');
 const scrollCueEl = document.getElementById('scroll-cue');
 const titleEl = document.getElementById('typed-title');
 
-titleEl.textContent = "Welcome to my portfolio.";
+titleEl.textContent = "";
+const heroTypedText = "Building data pipelines and models that scale.";
+function fitHeroTitle(){
+  const container = titleEl.parentElement;
+  const maxWidth = container.clientWidth * 0.94;
+  let fontSize = 30;
+  titleEl.style.fontSize = fontSize + 'px';
+  titleEl.style.whiteSpace = 'nowrap';
+  const measure = document.createElement('span');
+  measure.style.font = window.getComputedStyle(titleEl).font;
+  measure.style.position = 'absolute';
+  measure.style.visibility = 'hidden';
+  measure.style.whiteSpace = 'nowrap';
+  measure.textContent = heroTypedText;
+  document.body.appendChild(measure);
+  while(fontSize > 12){
+    measure.style.fontSize = fontSize + 'px';
+    if(measure.getBoundingClientRect().width <= maxWidth) break;
+    fontSize -= 1;
+  }
+  document.body.removeChild(measure);
+  titleEl.style.fontSize = fontSize + 'px';
+}
+fitHeroTitle();
+window.addEventListener('resize', fitHeroTitle);
+const cursorSpan = document.createElement('span');
+cursorSpan.className = 'cursor';
+cursorSpan.textContent = '\u00A0';
+function typeHeroTitle(i){
+  if(i <= heroTypedText.length){
+    titleEl.textContent = heroTypedText.slice(0, i);
+    titleEl.appendChild(cursorSpan);
+    setTimeout(()=> typeHeroTitle(i+1), 38);
+  }
+}
+if(reduceMotion){
+  titleEl.textContent = heroTypedText;
+} else {
+  typeHeroTitle(0);
+}
 eyebrowEl.classList.add('show');
 taglineEl.classList.add('show');
 ctaEl.classList.add('show');
@@ -772,7 +859,7 @@ const projects = [
     outcome:'A reusable analysis script rated beginner-to-intermediate quality, with recommended edge-case improvements applied.'
   },
   {
-    id:'p4', tag:'PKG', title:'Smilo: Open-Source Python Library', featured:true,
+    id:'p4', tag:'PKG', title:'Smilo: Open-Source Python Library', featured:true, badge:'Published on PyPI',
     desc:'A published, pip-installable Python package for data cleaning, train/test splitting, statistics, and quick EDA visualization.',
     tags:['Python','Open Source','PyPI','Packaging'],
     approach:'Designed a modular library (clean, split, stats, utils, viz) covering common EDA and preprocessing tasks. Wrote automated tests with pytest, configured packaging with setuptools/pyproject.toml, and published the build to PyPI so anyone can install it directly.',
@@ -781,7 +868,7 @@ const projects = [
     links:{ pypi:'https://pypi.org/project/smilo/', github:'https://github.com/DSFAHAD/Smilo-the-Python-Libraray' }
   },
   {
-    id:'p5', tag:'EDA', title:'UK Retail EDA & RFM Customer Segmentation', featured:true,
+    id:'p5', tag:'EDA', title:'UK Retail EDA & RFM Customer Segmentation', featured:true, badge:'530K+ Transactions',
     desc:'Exploratory analysis and RFM-based customer segmentation on 530K+ transactions from a UK-based online retailer.',
     tags:['Python','Pandas','Seaborn','RFM'],
     approach:'Cleaned and processed raw transaction data (invalid prices, guest checkouts, datetime handling), then engineered Recency, Frequency, and Monetary metrics to segment customers into Champions, Loyal, At Risk, and Lost groups.',
@@ -815,14 +902,26 @@ const projects = [
     tools:'Python, SciPy, statistical testing (Chi-Square, Fisher\'s Exact, t-test)',
     outcome:'Produced statistically grounded findings that were incorporated into the thesis document and presentation, supporting the comparative conclusions with literature-backed interpretation.'
   },
+  {
+    id:'p9', tag:'WEB', title:'Zameen.com Real Estate Web Scraper', featured:true, badge:'3,725 Scraped Listings',
+    desc:'A resilient web scraping pipeline that extracts 3,725 live property listings from Zameen.com, then applies the cleaned data to a price prediction model.',
+    tags:['Python','Web Scraping','BeautifulSoup','Scikit-learn'],
+    approach:'Built a scraper using Requests and BeautifulSoup to collect 3,725 property listings across 150 pages. Since Zameen.com uses randomly generated CSS class names that change on every deploy, extraction was built around stable aria-label attributes instead of class selectors, making the scraper resilient to front-end changes rather than dependent on fragile, hardcoded selectors. The scraper includes rate limiting and status-code checks to run responsibly. The resulting dataset was cleaned (mixed price units in Lakh/Crore/Arab, mixed area units in Marla/Kanal, standardized location fields) and used to train Linear Regression and Random Forest models as a downstream application of the scraped data.',
+    tools:'Python, Requests, BeautifulSoup, Pandas, NumPy, Scikit-learn, Matplotlib, Seaborn',
+    outcome:'Produced a genuinely original 3,725-listing dataset unavailable anywhere else, built entirely from a from-scratch scraping pipeline, and used it to train a Random Forest regressor reaching an R² of 0.53 on price prediction.',
+    links:{ github:'https://github.com/DSFAHAD/zameen-real-estate-price-prediction' }
+  },
 ];
 
 const grid = document.getElementById('project-grid');
-projects.forEach(p=>{
+projects.forEach((p, idx)=>{
   const card = document.createElement('div');
-  card.className = 'card' + (p.placeholder ? ' placeholder' : '') + (p.featured ? ' featured' : '');
+  const flyDir = idx % 3 === 0 ? 'from-left' : (idx % 3 === 1 ? '' : 'from-right');
+  card.className = 'card card-fly' + (flyDir ? ' ' + flyDir : '') + (p.placeholder ? ' placeholder' : '') + (p.featured ? ' featured' : '');
+  card.style.transitionDelay = (idx * 110) + 'ms';
   card.innerHTML = `
     <div class="card-icon">${p.tag}</div>
+    ${p.badge ? `<div class="card-badge">${p.badge}</div>` : ''}
     <h3>${p.title}</h3>
     <p>${p.desc}</p>
     <div class="card-tags">${p.tags.map(t=>`<span>${t}</span>`).join('')}</div>
@@ -830,6 +929,20 @@ projects.forEach(p=>{
   card.addEventListener('click', ()=> openModal(p));
   grid.appendChild(card);
 });
+
+const cardFlyIO = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add('in');
+      cardFlyIO.unobserve(entry.target);
+    }
+  });
+}, {threshold:0.15});
+if(reduceMotion){
+  document.querySelectorAll('.card-fly').forEach(el=> el.classList.add('in'));
+} else {
+  document.querySelectorAll('.card-fly').forEach(el=> cardFlyIO.observe(el));
+}
 
 const modalBackdrop = document.getElementById('modal-backdrop');
 function openModal(p){
@@ -911,7 +1024,7 @@ function animateContact(){
       p.y += (p.ty - p.y)*0.06;
       cCtx.beginPath();
       cCtx.arc(p.x,p.y,p.r,0,Math.PI*2);
-      cCtx.fillStyle = 'rgba(168,85,247,0.75)';
+      cCtx.fillStyle = 'rgba(77,216,232,0.75)';
       cCtx.fill();
     });
     frame++;
